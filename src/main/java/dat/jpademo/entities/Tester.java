@@ -98,6 +98,31 @@ public class Tester {
         
         populate(em);
         
+        System.out.println("********Lesson 1: Populate Dolphin database********");
+        System.out.println("---------------DONE---------------");
+        System.out.println("********Lesson 2: Create JPQL queries********");
+        System.out.println("********1. Find all persons and their fees********");
+        TypedQuery<Fee> q5 = em.createQuery("SELECT f FROM Fee f", Fee.class);
+        List<Fee> fees1 = q5.getResultList();
+
+        for (Fee f : fees1) {
+            System.out.println(f.getPerson().getName() + ": " + f.getAmount() + " kr. Den " + f.getPayDate()
+                    + "Adr: " + f.getPerson().getAddress().getCity());
+        }
+        System.out.println("---------------DONE---------------");
+        System.out.println("********2. Count number of swim styles connected to a person********");
+        TypedQuery<Person> q6 = em.createQuery("SELECT p FROM Person p", Person.class);
+        List<Person> persons2 = q2.getResultList();
+        
+        for (Person p: persons2){
+            System.out.println("Navn: " + p.getName());
+            System.out.println("--Styles:");
+            for (SwimStyle ss: p.getStyles()){
+                System.out.println("---- " + ss.getStyleName());
+            }
+        }
+        System.out.println("---------------DONE---------------");
+        
         em.close();
         }
 
@@ -156,6 +181,24 @@ public class Tester {
         p12.addFee(f1);
         p13.addFee(f3);
         p14.addFee(f2);
+        
+        SwimStyle s1 = new SwimStyle("Crawl");
+        SwimStyle s2 = new SwimStyle("Butterfly");
+        SwimStyle s3 = new SwimStyle("Breast Stroke");
+        
+        p3.addSwimStyle(s1);
+        p3.addSwimStyle(s3);
+        p4.addSwimStyle(s3);
+        p5.addSwimStyle(s2);
+        p6.addSwimStyle(s1);
+        p7.addSwimStyle(s3);
+        p8.addSwimStyle(s2);
+        p9.addSwimStyle(s1);
+        p10.addSwimStyle(s3);
+        p11.addSwimStyle(s2);
+        p12.addSwimStyle(s1);
+        p13.addSwimStyle(s3);
+        p14.addSwimStyle(s2);
 
         em.getTransaction().begin();
         em.persist(p3);
