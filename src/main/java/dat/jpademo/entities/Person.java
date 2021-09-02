@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,12 +25,15 @@ public class Person implements Serializable {
     private Long p_id;
     private String name;
     private int year;
-    
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
-    
+
     @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
     List<Fee> fees;
+
+    @ManyToMany(mappedBy = "persons", cascade = CascadeType.PERSIST)
+    List<SwimStyle> styles;
 
     public List<Fee> getFees() {
         return fees;
@@ -37,8 +41,22 @@ public class Person implements Serializable {
 
     public void addFee(Fee fee) {
         this.fees.add(fee);
-        if(fee != null) {
+        if (fee != null) {
             fee.setPerson(this);
+        }
+    }
+
+    public void addSwimStyle(SwimStyle swimStyles) {
+        if (swimStyles != null) {
+            this.styles.add(swimStyles);
+            swimStyles.getPersons().add(this);
+        }
+    }
+
+    public void removeSwimStyle(SwimStyle swimStyle) {
+        if (swimStyle != null) {
+            styles.remove(swimStyle);
+            swimStyle.getPersons().remove(this);
         }
     }
 
@@ -49,6 +67,7 @@ public class Person implements Serializable {
         this.name = name;
         this.year = year;
         this.fees = new ArrayList<>();
+        this.styles = new ArrayList<>();
     }
 
     public Address getAddress() {
@@ -57,11 +76,10 @@ public class Person implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
-        if(address != null) {
+        if (address != null) {
             address.setPerson(this);
         }
     }
-    
 
     public Long getP_id() {
         return p_id;

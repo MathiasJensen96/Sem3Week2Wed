@@ -1,3 +1,9 @@
-dat/jpademo/entities/Person_.class
 dat/jpademo/entities/Person.class
+dat/jpademo/entities/Fee_.class
+dat/jpademo/entities/Address_.class
+dat/jpademo/entities/Fee.class
+dat/jpademo/entities/SwimStyle.class
+dat/jpademo/entities/Person_.class
 dat/jpademo/entities/Tester.class
+dat/jpademo/entities/Address.class
+dat/jpademo/entities/SwimStyle_.class
