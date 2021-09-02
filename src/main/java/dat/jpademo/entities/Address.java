@@ -42,12 +42,9 @@ public class Address implements Serializable {
         this.person = person;
     }
     
-    
-
     public Long getA_id() {
         return a_id;
     }
-    
 
     public String getStreet() {
         return street;
@@ -72,9 +69,6 @@ public class Address implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
-    
-    
-    
 
     public Long getId() {
         return a_id;

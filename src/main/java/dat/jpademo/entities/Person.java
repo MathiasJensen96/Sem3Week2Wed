@@ -23,6 +23,7 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long p_id;
+    
     private String name;
     private int year;
 
@@ -34,6 +35,16 @@ public class Person implements Serializable {
 
     @ManyToMany(mappedBy = "persons", cascade = CascadeType.PERSIST)
     List<SwimStyle> styles;
+
+    public List<SwimStyle> getStyles() {
+        return styles;
+    }
+
+    public void setStyles(List<SwimStyle> styles) {
+        this.styles = styles;
+    }
+    
+    
 
     public List<Fee> getFees() {
         return fees;
