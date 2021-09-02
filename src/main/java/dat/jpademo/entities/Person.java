@@ -1,11 +1,14 @@
 package dat.jpademo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -21,8 +24,23 @@ public class Person implements Serializable {
     private Long p_id;
     private String name;
     private int year;
+    
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
+    
+    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+    List<Fee> fees;
+
+    public List<Fee> getFees() {
+        return fees;
+    }
+
+    public void addFee(Fee fee) {
+        this.fees.add(fee);
+        if(fee != null) {
+            fee.setPerson(this);
+        }
+    }
 
     public Person() {
     }
@@ -30,6 +48,7 @@ public class Person implements Serializable {
     public Person(String name, int year) {
         this.name = name;
         this.year = year;
+        this.fees = new ArrayList<>();
     }
 
     public Address getAddress() {
