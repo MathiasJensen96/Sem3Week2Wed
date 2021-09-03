@@ -44,7 +44,6 @@ public class Person implements Serializable {
         this.styles = styles;
     }
     
-    
 
     public List<Fee> getFees() {
         return fees;

@@ -6,4 +6,5 @@ dat/jpademo/entities/SwimStyle.class
 dat/jpademo/entities/Person_.class
 dat/jpademo/entities/Tester.class
 dat/jpademo/entities/Address.class
+dto/PersonStyleDTO.class
 dat/jpademo/entities/SwimStyle_.class

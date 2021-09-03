@@ -115,13 +115,46 @@ public class Tester {
         List<Person> persons2 = q2.getResultList();
         
         for (Person p: persons2){
-            System.out.println("Navn: " + p.getName());
-            System.out.println("--Styles:");
+            int amount = 0;
             for (SwimStyle ss: p.getStyles()){
-                System.out.println("---- " + ss.getStyleName());
+                amount++;
             }
+            System.out.println("Navn: " + p.getName());
+            System.out.println("--Styles: " + amount);
+            
         }
         System.out.println("---------------DONE---------------");
+        System.out.println("********3. Find all persons that has a swimstyle named 'Crawl'********");
+        TypedQuery<Person> q7 = em.createQuery("SELECT p FROM Person p JOIN p.styles s WHERE s.styleName = 'Crawl'", Person.class);
+        List<Person> person3 = q7.getResultList();
+        
+        for (Person p: person3) {
+            System.out.println(p.getName());
+        }
+        
+        System.out.println("********4. Find the sum of all Fees********");
+        TypedQuery<Fee> q8 = em.createQuery("SELECT f FROM Fee f", Fee.class);
+        List<Fee> fees3 = q8.getResultList();
+        int amount = 0;
+        
+        for (Fee f: fees3) {
+            amount = amount + f.getAmount();
+        }
+        System.out.println("Total sum of all fees: " + amount);
+        System.out.println("---------------DONE---------------");
+        
+        System.out.println("********5. Find the smallest Fee and the highest********");
+        TypedQuery<Fee> q9 = em.createQuery("SELECT MAX(f.amount) FROM Fee f", Fee.class);
+        List<Fee> fees4 = q9.getResultList();
+        TypedQuery<Fee> q10 = em.createQuery("SELECT Min(f.amount) FROM Fee f", Fee.class);
+        List<Fee> fees5 = q10.getResultList();
+        
+        
+        System.out.println("Highest value: " + fees4.get(0));
+        System.out.println("Lowest value: " + fees5.get(0));
+        
+
+        
         
         em.close();
         }
