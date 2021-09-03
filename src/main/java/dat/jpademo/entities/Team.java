@@ -43,16 +43,6 @@ public class Team implements Serializable {
         this.name = name;
     }
 
-    public List<Person> getPersons() {
-        return persons;
-    }
-
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
-    }
-    
-    
-
     public Long getId() {
         return id;
     }
