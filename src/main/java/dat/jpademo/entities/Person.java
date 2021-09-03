@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,6 +28,9 @@ public class Person implements Serializable {
     private String name;
     private int year;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+    List<Link_Person_Team> lpt;
+    
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
@@ -36,8 +40,7 @@ public class Person implements Serializable {
     @ManyToMany(mappedBy = "persons", cascade = CascadeType.PERSIST)
     List<SwimStyle> styles;
     
-    @ManyToMany
-
+    
     public List<SwimStyle> getStyles() {
         return styles;
     }
@@ -116,4 +119,8 @@ public class Person implements Serializable {
     public void setYear(int year) {
         this.year = year;
     }
+
+   
+    
+    
 }

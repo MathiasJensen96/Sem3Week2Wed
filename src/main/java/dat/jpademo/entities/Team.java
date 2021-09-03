@@ -23,15 +23,15 @@ public class Team implements Serializable {
     private Long id;
     private String name;
     
-    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
-    List<Person> persons;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
+    List<Link_Person_Team> lpt;
 
     public Team() {
     }
 
     public Team(String name) {
         this.name = name;
-        this.persons = new ArrayList<>();
+        this.lpt = new ArrayList<>();
         
     }
 
