@@ -35,6 +35,8 @@ public class Person implements Serializable {
 
     @ManyToMany(mappedBy = "persons", cascade = CascadeType.PERSIST)
     List<SwimStyle> styles;
+    
+    @ManyToMany
 
     public List<SwimStyle> getStyles() {
         return styles;

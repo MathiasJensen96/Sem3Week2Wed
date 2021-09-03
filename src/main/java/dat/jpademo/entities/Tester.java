@@ -149,9 +149,9 @@ public class Tester {
         TypedQuery<Fee> q10 = em.createQuery("SELECT Min(f.amount) FROM Fee f", Fee.class);
         List<Fee> fees5 = q10.getResultList();
         
-        
         System.out.println("Highest value: " + fees4.get(0));
         System.out.println("Lowest value: " + fees5.get(0));
+        System.out.println("---------------DONE---------------");
         
 
         
