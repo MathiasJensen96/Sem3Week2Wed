@@ -26,8 +26,6 @@ public class Link_Person_Team implements Serializable {
     @ManyToOne
     private Team team;
     
-    
-
     public Long getId() {
         return id;
     }
